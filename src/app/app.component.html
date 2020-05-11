@@ -14,6 +14,21 @@
 
           Upon submitting the form, simply print the value to the console
       -->
+      <form [formGroup]="ProjectForm" (ngSubmit)="OnSubmitForm()">
+        <div class="form-group">
+          <input class="form-control" type="text" style="margin-bottom: 3px;" placeholder="Project Name" formControlName="projectname">
+          <span class="badge badge-pill badge-danger" *ngIf="ValidateControl('projectname')">{{ProjectNameMessage}}</span>
+          <input type="email" class="form-control" style="margin-bottom: 3px;" placeholder="Email" formControlName="email">
+          <span class="badge badge-pill badge-danger" *ngIf="ValidateControl('email')">Please enter valid email!</span>
+        </div>
+        <div class="form-group">
+          <label>Project Status</label>
+          <select class="form-control" style="margin-bottom: 3px;" formControlName="projectstatus">
+            <option *ngFor="let OptionText of OptionArray" [value]="OptionText">{{OptionText}}</option>
+          </select>
+          <button class="btn btn-outline-primary" type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
